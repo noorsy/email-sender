@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+
+
+{%block jquery%}
+	$('button').click(function(event){
+	event.preventDefault();
+	$('.table').append('<tr class="new-line"><td><input type="text" class="new-label" name=""></td><td class="row2"><select class="selec" >{%for header in headers%}<option>{{header}}</option>{%endfor%}</select></td></tr>').after(function(){
+	$('.new-label').change(function(){
+	val = $(this).val()
+	console.log($(this).val())
+	$('.row2').remove()
+	$('.new-line').append('<select class="selec" name=' + val +'>{%for header in headers%}<option>{{header}}</option>{%endfor%}</select></td>')
+	})
+	})
+	})	
+	
+ {%endblock%}
+
+{% block content %}
+
+ 
+{%if models.count < 0 %}
+<form method="POST" action="" enctype="multipart/form-data">{%csrf_token%}
+
+		{{form}}
+		<input type="submit" name="" >
+
+</form>
+
+{%endif%}
+{%if models%}
+<form method="POST" action="." enctype="multipart/form-data">{%csrf_token%}
+		<table class="table">
+			{% for model in models %}
+			<tr>
+				
+				<td>
+
+					<label for="{{model}}">{{model}}</label>
+
+				</td>
+				<td>
+					
+					<select name="{{model}}">
+					
+					{% for header in headers %}	
+						<option value="{{header}}">{{header}}</option>
+					{% endfor %}
+					</select>
+				</td>
+
+				
+			</tr>
+			{%endfor%}
+			<button class="add-new">Add New</button>
+
+		</table>
+		
+		
+		
+		
+		<input type="submit" value="Submit">
+
+</form>
+{% endif %}
+
+{% endblock %}
+
