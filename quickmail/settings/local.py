@@ -41,7 +41,6 @@ https://accounts.google.com/displayunlockcaptcha
 '''
 
 
-
 # Application definition
 
 INSTALLED_APPS = (
@@ -59,6 +58,7 @@ INSTALLED_APPS = (
     #my apps
     'newsletter',
     'people',
+    'emailing',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,18 +92,28 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'quickmail.wsgi.application'
 
-
+GOOGLE_OAUTH2_CLIENT_ID = '38726536491-3rggkeuhtfs10ajtg16u31r58cl5vveg.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET = 'VfM3mwNVs6ZVeGONzpMZxd9Z'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 

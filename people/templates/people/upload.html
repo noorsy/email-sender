@@ -23,15 +23,17 @@
 <form method="POST" action="" enctype="multipart/form-data">{%csrf_token%}
 
 		{{form}}
-		<input type="submit" name="" >
+		<input type="submit" name="submit1" value="Upload" >
 
 </form>
 
 {%endif%}
 {%if models%}
-<form method="POST" action="." enctype="multipart/form-data">{%csrf_token%}
+<form method="POST" action="" enctype="multipart/form-data">{%csrf_token%}
 		<table class="table">
+
 			{% for model in models %}
+			{% if not model == 'id'%}
 			<tr>
 				
 				<td>
@@ -51,6 +53,7 @@
 
 				
 			</tr>
+			{% endif%}
 			{%endfor%}
 			<button class="add-new">Add New</button>
 
@@ -59,10 +62,9 @@
 		
 		
 		
-		<input type="submit" value="Submit">
+		<input type="submit" value="Submit" name="submit2">
 
 </form>
 {% endif %}
 
 {% endblock %}
-
