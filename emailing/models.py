@@ -11,7 +11,7 @@ from oauth2client.contrib.django_util.storage import DjangoORMStorage
 
 
 class CredentialsModel(models.Model):
-  id = models.ForeignKey(User, primary_key=True)
+  id = models.OneToOneField(User, primary_key=True)
   credential = CredentialsField()
 
 
